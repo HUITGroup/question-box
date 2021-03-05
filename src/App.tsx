@@ -1,15 +1,10 @@
 import './App.css';
+import Form from './Form';
 import {
   AppBar,
-  Button,
-  FormControlLabel,
-  FormLabel,
   makeStyles,
   Toolbar,
   Typography,
-  Radio,
-  RadioGroup,
-  FormControl,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,20 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Form(props) {
-  return (
-    <div>
-      <FormControl component="fieldset">
-        <FormLabel component="legend">HUIT部員ですか？</FormLabel>
-        <RadioGroup aria-label="member" name="member1">
-          <FormControlLabel value="yes" control={<Radio />} label="yes" />
-          <FormControlLabel value="no" control={<Radio />} label="no" />
-        </RadioGroup>
-      </FormControl>
-      <Button type="submit" variant="contained" color="primary">送信</Button>
-    </div>
-  );
-}
 
 function App() {
   const classes = useStyles();
