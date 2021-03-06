@@ -1,0 +1,36 @@
+name: React Firebase CI/CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build_test_deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.15.1
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build
+        run: npm build
+        
+      - name: Install Firebase Tools
+        run: npm install -g firebase-tools
+      
+      - name: Deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          firebase functions:config:set discord_webhook_url=$DISCORD_WEBHOOK_URL
+          firebase deploy --only hosting --token $FIREBASE_TOKEN
