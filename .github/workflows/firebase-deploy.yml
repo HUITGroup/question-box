@@ -22,8 +22,8 @@ jobs:
         run: npm install
 
       - name: Build
-        env: 
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        env:
+          REACT_APP_DISCORD_WEBHOOK_URL: ${{ secrets.REACT_APP_DISCORD_WEBHOOK_URL }}
         run: npm run build
         
       - name: Install Firebase Tools
