@@ -25,6 +25,7 @@ function Form() {
     <div>
       <TextContainer>
         <TextField
+          value={questionBody}
           placeholder='質問を入力してください'
           fullWidth={true}
           multiline
@@ -33,26 +34,27 @@ function Form() {
           rowsMax={10}
           variant={'outlined'}
           onChange={(event: any) => {
-          setQuestionBody(event.target.value);
+            setQuestionBody(event.target.value);
           }}
         />
       </TextContainer>
 
       <ButtonContainer>
-        <Button 
+        <Button
           size={'large'}
           color={'primary'}
           variant={'contained'}
-          onClick={() => { 
+          onClick={() => {
             if (questionBody) {
-              handleSubmit(questionBody); 
+              handleSubmit(questionBody);
               setEmptyError(false);
               setSucssess(true);
+              setQuestionBody('')
             } else {
               setSucssess(false);
               setEmptyError(true);
             }
-        }}>
+          }}>
           SEND
         </Button>
       </ButtonContainer>
