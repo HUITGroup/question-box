@@ -3,10 +3,9 @@ import { Button, TextField } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios';
 import styled from 'styled-components';
-import functions from 'firebase-functions';
 
 const handleSubmit = (questionMessage: string) => {
-  const URL: string = functions.config().discord_webhook.url;
+  const URL: string = '' + process.env.DISCORD_WEBHOOK_URL;
   axios.post(URL, { content: questionMessage }, {
     headers: {
       'Content-Type': 'application/json'
