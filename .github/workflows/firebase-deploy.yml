@@ -16,12 +16,14 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.15.1
+          node-version: 14.16.0
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build
+        env: 
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: npm run build
         
       - name: Install Firebase Tools
@@ -30,7 +32,5 @@ jobs:
       - name: Deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          firebase functions:config:set discord_webhook.url=$DISCORD_WEBHOOK_URL
           firebase deploy --only hosting --token $FIREBASE_TOKEN
