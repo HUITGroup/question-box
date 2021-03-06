@@ -3,8 +3,6 @@ name: React Firebase CI/CD
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   build_test_deploy:
@@ -34,5 +32,5 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: |
-          firebase functions:config:set DISCORD_WEBHOOK_URL=$DISCORD_WEBHOOK_URL
+          firebase functions:config:set webhook.url=$DISCORD_WEBHOOK_URL
           firebase deploy --only hosting --token $FIREBASE_TOKEN
