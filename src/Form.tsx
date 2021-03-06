@@ -5,7 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const handleSubmit = (questionMessage: string) => {
-  const URL: string = '' + process.env.DISCORD_WEBHOOK_URL;
+  const URL: string = '' + process.env.REACT_APP_DISCORD_WEBHOOK_URL;
   axios.post(URL, { content: questionMessage }, {
     headers: {
       'Content-Type': 'application/json'
